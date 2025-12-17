@@ -1,0 +1,529 @@
+/* GLOBAL STYLES */
+body {
+margin: 0;
+font-family: Arial, Helvetica, sans-serif;
+background-color: #f2f2f2;
+color: #333;
+}
+
+/* Navigation Bar */
+
+
+/* HEADER */
+/* Global safety */
+*,
+*::before,
+*::after {
+box-sizing: border-box;
+}
+
+/* Navbar */
+.navbar {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 60px;
+line-height: 60px;
+padding: 15px;
+text-align: center;
+background-color: #27282a;
+display: flex;                 /* ⭐ KEY */
+justify-content: center;
+align-items: center;
+z-index: 1002; /* highest */
+}
+
+/* Navbar links */
+.navbar a {
+color: white;
+margin: 0 20px;
+text-decoration: none;
+font-weight: bold;
+font-size: 18px;
+}
+
+.navbar a:hover {
+text-decoration: underline;
+}
+
+/* Header */
+.header {
+position: fixed;
+top: 60px;            /* BELOW NAVBAR */
+left: 0;
+width: 100%;
+
+padding: 40px;
+background: rgba(39, 40, 42, 0.6);
+color: white;
+
+z-index: 1001;        /* below navbar */
+box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+overflow: hidden;
+}
+
+/* Glass layer */
+.header::before {
+content: "";
+position: absolute;
+top: 0;              /* relative to header, not viewport */
+left: 0;
+right: 0;
+bottom: 0;
+
+background: rgba(39, 40, 42, 0.5);
+backdrop-filter: blur(12px);
+-webkit-backdrop-filter: blur(12px);
+
+z-index: -1;
+pointer-events: none;
+}
+
+/* Scroll state */
+.header.scrolled::before {
+background: rgba(20, 20, 22, 0.85);
+backdrop-filter: blur(18px);
+}
+/* Page offset */
+body {
+margin: 0;
+padding-top: 210px;
+}
+
+section {
+scroll-margin-top: 210px;
+}
+
+
+
+/* Page-Content*/
+.page-content {
+transition: filter 0.4s ease, transform 0.4s ease;
+}
+
+.page-content.scrolled {
+filter: blur(2px);
+transform: scale(0.995);
+}
+
+.profile-pic {
+    width: 150px;
+    height: 170px;
+    border-radius: 50%;      /* makes it circular */
+    object-fit: cover;       /* avoids image stretching */
+    border: 3px solid white;  
+    float: left;
+    margin-top: -32px;
+}
+
+.header-text {
+    text-align: center;
+}
+
+/* Icons container */
+.header-icons {
+position: absolute;
+top: 20px;
+right: 30px;
+
+display: flex;
+flex-direction: column;   /* STACKS items */
+align-items: flex-end;
+gap: 12px;                /* space between icons & text */
+}
+
+/* Icon style */
+.header-icons a {
+    color: white;
+    font-size: 28px;
+    text-decoration: none;
+    pointer-events: auto;
+}
+
+.header-icons a:hover {
+    color: #c7d2fe; /* soft hover */
+}
+
+.social-icons {
+display: flex;
+gap: 16px;
+}
+
+.whatsapp-icon {
+color: #25D366;      /* WhatsApp green */
+margin: 0 6px;
+}
+
+.contact-info {
+display: flex;
+flex-direction: column;   /* forces vertical stacking */
+align-items: flex-end;
+text-align: right;
+}
+
+.contact-info a {
+font-size: inherit;     /* key line */
+font-weight: inherit;
+color: #e5e7eb;
+text-decoration: none;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+.contact-info p {
+margin: 2px 0;
+font-size: 18px;
+color: #e5e7eb;
+}
+
+.contact-info i {
+    margin-right: 6px;
+    text-align: right;
+}
+
+.header-icon-cv{
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 16px 28px;
+    background: linear-gradient(135deg, #212631, #343942);
+    color: white;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    border-radius: 14px;
+    text-decoration: none;
+
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.35);
+    transition: all 0.3s ease;
+}
+
+.header-icon-cv i{
+    font-size: 18px;
+}
+
+.header-icon-cv:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 15px 30px rgba(37, 99, 235, 0.5);
+}
+
+/* SECTIONS */
+.section {
+background-color: white;
+margin: 20px auto;
+padding: 25px;
+max-width: 900px;
+border-radius: 8px;
+padding-top: 60px;
+}
+
+.about,
+.education,
+.experience,
+.projects,
+.skills,
+.language,
+.section-title{
+text-align: center; 
+}
+/*EDUCATION*/
+.education {
+background-color: white;
+margin: 20px auto;
+padding: 25px;
+max-width: 900px;
+border-radius: 8px;
+}
+
+.education h2 {
+    margin-bottom: 20px;
+}
+
+.education-UEM,
+.Education-TRIER {
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.UEM-header,
+.Trier-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.UEM-logo img{
+    width: 100px;        /* adjust as needed */
+    height: auto;
+    object-fit: contain;
+}
+
+.Trier-logo img{
+    width: 150px;        /* adjust as needed */
+    height: auto;
+    object-fit: contain;
+}
+
+.UEM-text h3,
+.Trier-text h4 {
+    margin-bottom: 5px;
+}
+
+.UEM-text p,
+.Trier-text p {
+    margin: 4px 0;
+    color: #444;
+}
+
+.UEM-text p b,
+.Trier-text p b {
+    font-weight: 600;
+}
+
+.education-UEM:hover,
+.Education-TRIER:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: 0.3s ease;
+}
+
+/* EXPERIENCE */
+
+/* Experience card */
+.exp-card {
+background: #b9b9b9;                 /* grey when closed */
+border-radius: 14px;
+margin-top: 24px;
+padding: 24px;
+
+border: 1px solid #e5e7eb;
+border-left: 6px solid #4f8cff;
+
+box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+
+transition: 
+    background-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+
+/* Remove default arrow */
+.exp-card summary {
+list-style: none;
+cursor: pointer;
+}
+.exp-card summary::-webkit-details-marker {
+display: none;
+}
+
+/* Header spacing */
+.exp-summary {
+padding: 24px;
+cursor: pointer;
+}
+
+.exp-card:not([open]) .exp-summary {
+    color: #000;
+}
+
+.exp-card[open] .exp-summary {
+    color: #000;
+}
+
+/* Expand animation feel */
+.exp-card[open] {
+background: #ffffff;                 /* white when expanded */
+box-shadow: 0 16px 40px rgba(0,0,0,0.15);
+}
+
+/* Optional: smooth content fade-in */
+.exp-card .experience-body {
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.exp-card[open] .experience-body {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Body spacing */
+.experience-body {
+padding: 0 24px 24px;
+line-height: 1.6;
+}
+
+/* Hover effect */
+.exp-summary:hover {
+background-color: #3b82f6;
+}
+
+.experience {
+    border: 1px solid #f6f7f8;
+    padding: 15px;
+    border-radius: 6px;
+    margin-top: 10px;
+}
+
+.experience-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+/* Text block */
+.experience-text {
+    flex: 1;
+}
+
+/* Logo block */
+.experience-logo img {
+    width: 100px;        /* adjust as needed */
+    height: auto;
+    object-fit: contain;
+}
+
+details summary {
+    cursor: pointer;
+    list-style: none;
+}
+
+details summary::-webkit-details-marker {
+    display: none; /* removes default arrow */
+}
+
+details summary h2 {
+    display: inline-block;
+}
+
+/* Add custom arrow */
+details summary::after {
+    content: " ▼";
+    font-size: 14px;
+    align-items: flex-end;
+}
+
+details[open] summary::after {
+    content: " ▲";
+}
+
+/* Spacing */
+.experience-content {
+    margin-top: 20px;
+}
+
+/* PROJECT CARD */
+.project {
+border: 1px solid #ddd;
+padding: 15px;
+border-radius: 6px;
+margin-top: 10px;
+}
+
+/* BUTTON */
+.btn {
+    display: inline-block;
+    background-color: #1d2534;
+    color: white;
+    border: none;
+    padding: 9px 12px;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #1e40af;
+}
+
+/* SKILLS */
+.skills-section {
+padding: 60px 20px;
+text-align: center;
+}
+
+.skills-section h2 {
+font-size: 32px;
+margin-bottom: 40px;
+}
+
+.skills-grid {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 30px;
+max-width: 1100px;
+margin: 0 auto;
+}
+
+.skill-card {
+background: #27282a;
+color: white;
+padding: 30px;
+border-radius: 16px;
+text-align: left;
+position: relative;
+
+box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Blue accent bar */
+.skill-card::before {
+content: "";
+position: absolute;
+left: 0;
+top: 30px;
+width: 4px;
+height: 28px;
+background: #3b82f6;
+border-radius: 2px;
+}
+
+.skill-card:hover {
+transform: translateY(-6px);
+box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+background: #89869f;
+color: black;
+}
+
+.skill-card h3 {
+margin-top: -4px;
+text-align: center;
+font-size: 25px;
+}
+
+.skill-card ul {
+list-style: none;
+padding: 0;
+margin: 0;
+}
+
+.skill-card li {
+display: flex;
+align-items: center;
+gap: 12px;
+margin-bottom: 14px;
+font-size: 16px;
+}
+
+/* Icons */
+.skill-card li i {
+color: #60a5fa;
+font-size: 18px;
+}
+
+@media (max-width: 768px) {
+.skills-grid {
+    grid-template-columns: 1fr;
+}
+}
+
+
