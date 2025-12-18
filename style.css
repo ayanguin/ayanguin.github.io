@@ -23,48 +23,49 @@ box-sizing: border-box;
 
 /* Navbar */
 .navbar {
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 60px;
-line-height: 60px;
-padding: 15px;
-text-align: center;
-background-color: #27282a;
-display: flex;                 /* ⭐ KEY */
-justify-content: center;
-align-items: center;
-z-index: 1002; /* highest */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #27282a;
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    padding: 14px 10px;
+    z-index: 2000;
+    flex-wrap: wrap;
 }
 
-/* Navbar links */
 .navbar a {
-color: white;
-margin: 0 20px;
-text-decoration: none;
-font-weight: bold;
-font-size: 18px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
 }
 
 .navbar a:hover {
-text-decoration: underline;
+    text-decoration: underline;
 }
 
 /* Header */
 .header {
-position: fixed;
-top: 60px;            /* BELOW NAVBAR */
-left: 0;
-width: 100%;
+    position: fixed;
+    top: 45px; /* below navbar */
+    left: 0;
 
-padding: 40px;
-background: rgba(39, 40, 42, 0.6);
-color: white;
+    width: 100%;
+    background: rgba(39,40,42,0.85);
+    backdrop-filter: blur(12px);
+    color: white;
+    padding: 24px;
+    z-index: 1500;
+}
 
-z-index: 1001;        /* below navbar */
-box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-overflow: hidden;
+.header {
+    display: grid;
+    grid-template-columns: 150px 1fr 260px;
+    align-items: center;
+    gap: 20px;
 }
 
 /* Glass layer */
@@ -112,13 +113,11 @@ transform: scale(0.995);
 }
 
 .profile-pic {
-    width: 150px;
-    height: 170px;
-    border-radius: 50%;      /* makes it circular */
-    object-fit: cover;       /* avoids image stretching */
-    border: 3px solid white;  
-    float: left;
-    margin-top: -32px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid white;
 }
 
 .header-text {
@@ -127,7 +126,7 @@ transform: scale(0.995);
 
 /* Icons container */
 .header-icons {
-position: absolute;
+/* position: absolute;*/
 top: 20px;
 right: 30px;
 
@@ -531,80 +530,86 @@ font-size: 18px;
 }
 
 
+/* =========================
+   MOBILE Navbar FIX
+   ========================= */
+@media (max-width: 768px) {
+    .navbar {
+        justify-content: center;
+        gap: 14px;
+        padding: 10px;
+    }
+
+    .navbar a {
+        font-size: 14px;
+    }
+}
 
 /* =========================
    MOBILE HEADER FIX
    ========================= */
 @media (max-width: 768px) {
 
-    /* Header container */
     .header {
-        padding: 16px;
+        grid-template-columns: 1fr;
         text-align: center;
+        gap: 14px;
     }
 
-    /* Main header layout */
-    .header-content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-    }
-
-    /* Profile picture */
     .profile-pic {
+        margin: 0 auto;
         width: 90px;
         height: 90px;
-        margin: 0 auto;
     }
 
-    /* Name */
-    .header h1,
-    .header h2 {
-        font-size: 22px;
-        text-align: center;
-        margin: 4px 0;
+    .header-icons {
+        align-items: center;
     }
 
-    /* Subtitle */
-    .header .subtitle,
-    .header p {
-        font-size: 14px;
-        text-align: center;
-        margin: 0;
-    }
-
-    /* Contact info block */
     .contact-info {
-        display: flex;
-        flex-direction: column;
         align-items: center;
-        gap: 6px;
-        margin-top: 10px;
+        text-align: center;
     }
+}
 
-    .contact-info a,
-    .contact-info span {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 14px;
-        justify-content: center;
+
+@media (max-width: 768px) {
+    body {
+        padding-top: 260px;
     }
+}
 
-    /* Social icons */
-    .social-icons {
-        display: flex;
-        justify-content: center;
-        gap: 14px;
-        margin-top: 8px;
+@media (max-width: 768px) {
+    section {
+        scroll-margin-top: 280px;
     }
+}
 
-    /* Remove any absolute positioning */
-    .header-right,
-    .header-left {
-        position: static;
+/* =====================================
+   MOBILE: DISABLE STATIC / FIXED HEADER
+   ===================================== */
+@media (max-width: 768px) {
+
+
+    /* Header should NOT be fixed */
+    .header {
+        position: relative !important;
+        top: 45px;;
+        left: auto !important;
         width: 100%;
+
+        padding: 24px 16px;
+    }
+
+    /* Remove artificial spacing */
+    body {
+        padding-top: 0 !important;
+        margin-top: 0 !important;
+    }
+
+    /* Ensure sections flow naturally */
+    section {
+        scroll-margin-top: 0 !important;
     }
 }
 
