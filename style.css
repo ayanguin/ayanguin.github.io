@@ -53,12 +53,14 @@ box-sizing: border-box;
     top: 45px; /* below navbar */
     left: 0;
 
+    padding: 10px 10px 10px;        /* ⬅️ reduced from big values */
+    /*min-height: 60vh;*/
+
     width: 100%;
     background: rgba(39,40,42,0.85);
     backdrop-filter: blur(12px);
     color: white;
-    padding: 24px;
-    z-index: 1500;
+    z-index: 1000;
 }
 
 .header {
@@ -67,6 +69,17 @@ box-sizing: border-box;
     align-items: center;
     gap: 20px;
 }
+
+.greeting {
+    margin-top: 12px;
+    font-size: 18px;
+    letter-spacing: 1px;
+    color: #d1d5db;
+    font-weight: 400;
+}
+
+
+
 
 /* Glass layer */
 .header::before {
@@ -93,11 +106,11 @@ backdrop-filter: blur(18px);
 /* Page offset */
 body {
 margin: 0;
-padding-top: 210px;
+padding-top: 120px;
 }
 
 section {
-scroll-margin-top: 210px;
+scroll-margin-top: 130px;
 }
 
 
@@ -113,8 +126,8 @@ transform: scale(0.995);
 }
 
 .profile-pic {
-    width: 120px;
-    height: 120px;
+    width: 180px;
+    height: 180px;
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid white;
@@ -225,7 +238,7 @@ border-radius: 8px;
 padding-top: 60px;
 }
 
-.about,
+.section-title,
 .education,
 .experience,
 .projects,
@@ -234,79 +247,377 @@ padding-top: 60px;
 .section-title{
 text-align: center; 
 }
-/*EDUCATION*/
-.education {
-background-color: white;
-margin: 20px auto;
-padding: 25px;
-max-width: 900px;
-border-radius: 8px;
+
+/* ===============================
+   ABOUT SECTION – FLASH CARDS
+   =============================== */
+
+#about {
+    margin-top: 210px;
 }
 
-.education h2 {
-    margin-bottom: 20px;
+.achievement-list{
+    text-align: left;
+    list-style-position: outside;
+    padding-left: 24px;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #2c2c2c;
 }
 
-.education-UEM,
-.Education-TRIER {
-    border: 1px solid #e0e0e0;
-    border-radius: 6px;
-    padding: 20px;
-    margin-bottom: 20px;
+.achievement-list li {
+    margin-bottom: 14px;
 }
 
-.UEM-header,
-.Trier-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 20px;
+
+.about-section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    text-align: center;
 }
 
-.UEM-logo img{
-    width: 100px;        /* adjust as needed */
-    height: auto;
-    object-fit: contain;
-}
-
-.Trier-logo img{
-    width: 150px;        /* adjust as needed */
-    height: auto;
-    object-fit: contain;
-}
-
-.UEM-text h3,
-.Trier-text h4 {
-    margin-bottom: 5px;
-}
-
-.UEM-text p,
-.Trier-text p {
-    margin: 4px 0;
+.about-intro {
+    max-width: 800px;
+    margin: 0 auto 30px;
+    font-size: 17px;
+    line-height: 1.6;
     color: #444;
 }
 
-.UEM-text p b,
-.Trier-text p b {
-    font-weight: 600;
+/* Cards container */
+.about-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
 }
 
-.education-UEM:hover,
-.Education-TRIER:hover {
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    transition: 0.3s ease;
+/* Individual card */
+.about-card {
+    background: #ffffff;
+    padding: 24px 20px;
+    border-radius: 14px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+.about-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 35px rgba(0, 0, 0, 0.12);
+}
+
+.about-card h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #222;
+}
+
+.about-card p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #555;
+}
+
+/* Optional accent colors */
+.about-card.past {
+    border-top: 4px solid #64748b;
+    background: #a6afde;
+}
+
+.about-card.present {
+    border-top: 4px solid #2563eb;
+    background: #b8f7c2;
+}
+
+.about-card.future {
+    border-top: 4px solid #16a34a;
+    background: #eeecb3;
+}
+
+/* ===============================
+             EDUCATION
+   =============================== */
+
+
+
+/* EDUCATION UPDATE */
+
+/* ---------- GENERAL ---------- */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f6f8;
+    margin: 0;
+    padding: 40px 16px;
+}
+
+.section {
+    max-width: 1000px;
+    margin: auto;
+}
+
+.section h2 {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* ---------- FLIP CARD ---------- */
+.edu-card {
+    perspective: 1200px;
+    margin-bottom: 40px;
+    cursor: pointer;
+}
+
+.edu-card-inner {
+    position: relative;
+    width: 100%;
+    min-height: 260px;
+    transform-style: preserve-3d;
+    transition: transform 0.7s ease;
+}
+
+.edu-card.flipped .edu-card-inner {
+    transform: rotateY(180deg);
+}
+
+/* ---------- FRONT & BACK ---------- */
+.edu-card-front,
+.edu-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 24px;
+    border-radius: 16px;
+    /*background: #d5f4c7;*/
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    backface-visibility: hidden;
+}
+
+.edu-card-front {
+    background: #dff6d4;
+}
+.edu-card-back {
+    background: #c8e3f4;
+}
+
+/* Bachelor / Master headings */
+.edu-level {
+  text-align: center;
+  width: 100%;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.edu-level::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: #5b6cff;
+  margin: 8px auto 0;
+  border-radius: 2px;
+}
+
+/* Header layout with logo on right */
+.edu-header.edu-right-logo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+/* BACK */
+.edu-card-back {
+    transform: rotateY(180deg);
+}
+
+/* ---------- HEADER ---------- */
+.edu-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.edu-logo {
+    width: 120px;
+    height: 72px;
+    object-fit: contain;
+    background: #fff;
+    border-radius: 12px;
+    padding: 6px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    align-self: flex-start;
+    order: 2;
+}
+
+.edu-text {
+    order: 1;
+}
+
+.edu-text h3 {
+    margin: 0 0 6px;
+}
+
+.edu-text p {
+    margin: 3px 0;
+}
+
+/* ---------- BACK CONTENT ---------- */
+.edu-card-back h3 {
+    margin-top: 0;
+}
+
+.edu-card-back ul {
+    padding-left: 18px;
+}
+
+/* ---------- HINT ---------- */
+.tap-hint {
+    display: block;
+    margin-top: 20px;
+    font-size: 13px;
+    color: #666;
+    text-align: center;
+}
+
+/* ---------- MOBILE ---------- 
+@media (max-width: 600px) {
+    .edu-header {
+        flex-direction: column;
+        text-align: center;
+    }
+}*/
+
+/* Download button  */
+.uem-btn{
+    display: inline-block;
+    background-color: #1d2534;
+    color: white;
+    border: none;
+    padding: 9px 12px;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    align-self: auto;
+    position: absolute;
+    /*top: 20px;*/
+    right: 16px;
+    bottom: 20px;
+}
+
+.uem-btn:hover{
+    background-color: #dce5bc;
+    color: #000;
+}
+@media (max-width: 768px) {
+
+  /* Card container */
+  .edu-card {
+    height: auto;              /* 🔥 IMPORTANT */
+    min-height: unset;
+    margin-bottom: 32px;       /* space between cards */
+    perspective: none;
+  }
+
+  .edu-card-inner {
+    position: relative;        /* stop absolute stacking */
+    transform-style: preserve-3d;
+    transform: none !important;
+  }
+
+  .edu-card-front,
+  .edu-card-back {
+    position: relative;        /* instead of absolute */
+    height: auto;
+    min-height: unset;
+    transform: none;
+    backface-visibility: visible;
+  }
+
+  .edu-card-back {
+    display: none;
+  }
+
+  .edu-card.flipped .edu-card-back {
+    display: block;
+  }
+
+  .edu-card-back {
+    animation: slideDown 0.35s ease;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+
+  /* Header layout becomes vertical */
+  .edu-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+  }
+
+  /* Text block */
+  .edu-text {
+    order: 1;
+    text-align: center;
+  }
+
+  .edu-text h3 {
+    font-size: 20px;
+  }
+
+  .edu-text p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  /* Logo block */
+  .edu-logo {
+    order: 2;
+    margin: 16px auto 0;
+    align-self: center;
+    position: static;      /* 🔥 prevents overlap */
+    display: block;
+  }
+
+  .edu-logo img {
+    width: 90px;
+    height: auto;
+  }
+
+  /* Tap hint */
+  .edu-hint {
+    font-size: 13px;
+    margin-top: 8px;
+    opacity: 0.7;
+  }
+}
+
+
+
 
 /* EXPERIENCE */
 
 /* Experience card */
 .exp-card {
 background: #b9b9b9;                 /* grey when closed */
-border-radius: 14px;
-margin-top: 24px;
-padding: 24px;
+border-radius: 6px;
+margin-top: 6px;
+padding: 6px;
 
-border: 1px solid #e5e7eb;
+border: 1px solid #b5ccf9;
 border-left: 6px solid #4f8cff;
 
 box-shadow: 0 10px 30px rgba(0,0,0,0.1);
@@ -366,7 +677,7 @@ line-height: 1.6;
 
 /* Hover effect */
 .exp-summary:hover {
-background-color: #3b82f6;
+background-color: #b4ccf3;
 }
 
 .experience {
@@ -441,6 +752,10 @@ margin-top: 10px;
     border-radius: 5px;
     text-decoration: none;
     cursor: pointer;
+
+    position: relative;
+    right:auto;
+    bottom: auto;
 }
 
 .btn:hover {
@@ -614,8 +929,155 @@ font-size: 18px;
 }
 
 
+/* ===============================
+   ABOUT - MOBILE RESPONSIVE
+   =============================== */
+@media (max-width: 768px) {
+    .about-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .about-intro {
+        font-size: 16px;
+    }
+}
 
 
+
+/* ===============================
+   ABOUT – SWIPE CARDS
+   =============================== */
+.about-section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.about-intro {
+    max-width: 700px;
+    margin: 0 auto 30px;
+    font-size: 16px;
+    color: #444;
+}
+
+/* Slider layout */
+.slider-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slider {
+    overflow: hidden;
+    width: 100%;
+    max-width: 500px;
+}
+
+.card-track {
+    display: flex;
+    transition: transform 0.4s ease-in-out;
+}
+
+/* Card */
+.about-card {
+    min-width: 100%;
+    background: #ffffff;
+    padding: 26px 22px;
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Accent colors */
+.about-card.past {
+    border-top: 4px solid #64748b;
+}
+
+.about-card.present {
+    border-top: 4px solid #2563eb;
+}
+
+.about-card.future {
+    border-top: 4px solid #16a34a;
+}
+
+.about-card h3 {
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.about-card p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #555;
+}
+
+/* Navigation buttons */
+.nav-btn {
+    background: none;
+    border: none;
+    font-size: 32px;
+    cursor: pointer;
+    color: #333;
+    padding: 10px;
+}
+
+.nav-btn:hover {
+    color: #2563eb;
+}
+
+/* Hide arrows on small screens */
+@media (max-width: 768px) {
+    .nav-btn {
+        display: none;
+    }
+}
+
+
+
+
+/* ===============================
+   Language – SWIPE CARDS
+   =============================== */
+
+.language-section {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.language-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.language-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 25px;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.language-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+  background: #c1cae8;
+}
+
+.language-card h3 {
+  margin-bottom: 6px;
+}
+
+.language-card p {
+  color: #555;
+  font-size: 0.95rem;
+}
 
 
 
